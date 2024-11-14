@@ -3,8 +3,21 @@
     padding: 0;
     box-sizing: border-box;
 }
-.a{
-    background-color: pink!important;
-    border-color: pink!important;
-    color: pink!important;
+
+@font-face {
+    font-family: Chirp;
+    src: url(Font/89e193b98453504c456698844de4c52b.otf);
+}
+.chirp{
+    font-family: Chirp,Arial, Helvetica, sans-serif;
+}
+.border-below{
+    border-bottom: 1px solid #2F3336;
+}
+.border-rightt{
+    border-right: 1px solid #2F3336;
+    border-left: 1px solid #2F3336;
+}
+.box-shadow{
+    box-shadow: 0 0 10px #1d9cf07e, 0 0 20px #1D9BF0;
 }
