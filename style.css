@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.a{
+    background-color: pink!important;
+    border-color: pink!important;
+    color: pink!important;
+}
