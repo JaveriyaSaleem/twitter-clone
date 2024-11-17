@@ -6,12 +6,14 @@ let commentBtn = document.getElementsByClassName('comment')
 let retweetBtn = document.getElementsByClassName('retweet')
 let bookmarkBtn = document.getElementsByClassName('bookmark')
 let viewsBtn = document.getElementsByClassName('views')
+// post 
 postBtn.addEventListener('click',()=>{
   let createElement = document.createElement('section')
   createElement.setAttribute('id','post')
   createElement.setAttribute('class','grid grid-cols-10 gap-2  border-below py-2 px-2')
   allPost.prepend(createElement)
   let postDiv = document.getElementById('post')
+//   adding post 
  postDiv.innerHTML  = `<!-- pfp  -->
                 <figure class="flex justify-end items-start h-100"><img src="img/profile2.jpg" class="w-10 rounded-full"
                         alt="..."></figure>
@@ -87,3 +89,16 @@ postBtn.addEventListener('click',()=>{
   makingPost.value = ""  
     
 })
+let forRetweet =0;
+let forComment =0;
+allPost.addEventListener('click',(e)=>{
+    let forHeart = 0;
+
+if(e.target){
+    forHeart++
+    console.log()
+}
+
+})
+
+
