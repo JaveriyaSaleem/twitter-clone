@@ -1,38 +1,157 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 @font-face {
-    font-family: Chirp;
-    src: url(Font/89e193b98453504c456698844de4c52b.otf);
+    font-family:Chirp;
+    src: url(/Font/89e193b98453504c456698844de4c52b.otf);
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
 }
 .chirp{
-    font-family: Chirp,Arial, Helvetica, sans-serif;
+    font-family:Chirp,Arial, Helvetica, sans-serif;
 }
-.border-below{
-    border-bottom: 1px solid #2F3336;
+body 
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #242D34;
 }
-.border-lightt{
-    border: 1px solid #2F3336 !important;
+section 
+{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
-.border-rightt{
-    border-right: 1px solid #2F3336;
-    border-left: 1px solid #2F3336;
+
+
+section .signin
+{
+  position: absolute;
+  width: 400px;
+  background: black;  
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,9);
 }
-.box-shadow{
-    box-shadow: 0 0 10px #1d9cf07e, 0 0 20px #1D9BF0;
+section .signin .content 
+{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
 }
-.rounded-underline::after {
-    margin-bottom: -8px;
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px; /* Thickness of the underline */
-    background-color: #1D9BF0; /* Tailwind's blue-500 */
-    border-radius: 4px; /* Rounded edges */
-    z-index: -1; /* Places it behind the text */
-  }
+section .signin .content h2 
+{
+  font-size: 2em;
+  color: rgb(255, 255, 255);
+
+}
+section .signin .content .form 
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+section .signin .content .form .inputBox
+{
+  position: relative;
+  width: 100%;
+}
+section .signin .content .form .inputBox input 
+{
+  position: relative;
+  width: 100%;
+  background: transparent;
+  border: 2px solid #333639;
+  outline: none;
+  padding: 25px 10px 7.5px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+}
+section .signin .content .form .inputBox i 
+{
+  position: absolute;
+  left: 0;
+  padding: 15px 10px;
+  font-style: normal;
+  color: #aaa;
+  transition: 0.5s;
+  pointer-events: none;
+}
+.signin .content .form .inputBox input:focus ~ i,
+.signin .content .form .inputBox input:valid ~ i
+{
+  transform: translateY(-7.5px);
+  font-size: 0.8em;
+  color: #fff;
+}
+.signin .content .form .links 
+{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.signin .content .form .links a 
+{
+  color: #fff;
+  text-decoration: none;
+}
+.signin .content .form .links a:nth-child(2)
+{
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}
+.signin .content .form .inputBox .inputBtn
+{
+  padding: 3px;
+  background: rgb(255, 255, 255);
+  color: #000;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border-radius: 140px;
+}
+.signin .content .form .inputBox .btnGoogle{
+    padding: 3px;
+    background: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: 1px solid #333639;
+    border-radius: 140px;
+}
+input[type="button"]:active
+{
+  opacity: 0.6;
+}
+
+
+.btnLight{
+  transition: box-shadow 0.3s ease;
+}
+.btnLight:hover{
+  box-shadow: 0 0 10px #0f0, 0 0 2px #0f0;
+}

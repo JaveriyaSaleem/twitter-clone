@@ -25,6 +25,17 @@
       <h2 class="chirp">Login to <i class="fa-brands fa-x-twitter"></i></h2> 
  
       <div class="form"> 
+        <div class="inputBox"> 
+ 
+            <input type="button" value="Continue with Google" id="google" class="inputBtn"> 
+     
+           </div> 
+           <div class="flex justify-center w-100 items-center gap-1">
+            <span class="bg-[#333639] w-[45%] h-[0.8px] inline-block"></span>
+            <span class="text-[17px] text-[#E7E9EA]">or</span>
+            <span class="bg-[#333639] w-[45%] h-[0.8px] inline-block"></span>
+    
+           </div>
 
        <div class="inputBox"> 
  
@@ -37,23 +48,20 @@
         <input type="password" required id="password"> <i>Password</i> 
  
        </div> 
-        <div class="flex flex-col">
+        <div class="flex flex-col gap-3">
        <div class="inputBox"> 
  
-        <input type="button" value="Login" id="register" class="inputBtn"> 
+        <input type="button" value="Login" id="login" class="inputBtn"> 
  
        </div> 
-       <div class="flex justify-center w-100 items-center gap-1">
-        <span class="bg-[#333639] w-[45%] h-[0.8px] inline-block"></span>
-        <span class="text-[17px] text-[#E7E9EA]">or</span>
-        <span class="bg-[#333639] w-[45%] h-[0.8px] inline-block"></span>
-
+       <div class="inputBox"> 
+ 
+        <input type="button" value="Forget Password?" id="forgetPassword" class="btnGoogle"> 
+ 
+       </div> 
+       <div>
+        <p class="text-[15px] flex flex-row items-center gap-1"><span class="text-[#71767B]">Don't have an account? </span><a class="text-[#146DA8] hover:underline cursor-pointer" id="signUp">Sign up</a></p>
        </div>
-       <div class="inputBox"> 
- 
-        <input type="button" value="Continue with Google" id="google" class="btnGoogle"> 
- 
-       </div> 
  </div>
       </div> 
  
@@ -63,6 +71,6 @@
  
    </section> <!-- partial --> 
  
-    <script src="app.js"></script>
+    <script src="signin.js" type="module"></script>
 </body>
 </html>

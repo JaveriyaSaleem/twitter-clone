@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Chirp;
+    src: url(Font/89e193b98453504c456698844de4c52b.otf);
+}
+.chirp{
+    font-family: Chirp,Arial, Helvetica, sans-serif;
+}
+.border-below{
+    border-bottom: 1px solid #2F3336;
+}
+.border-lightt{
+    border: 1px solid #2F3336 !important;
+}
+.border-rightt{
+    border-right: 1px solid #2F3336;
+    border-left: 1px solid #2F3336;
+}
+.box-shadow{
+    box-shadow: 0 0 10px #1d9cf07e, 0 0 20px #1D9BF0;
+}
+.rounded-underline::after {
+    margin-bottom: -8px;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; /* Thickness of the underline */
+    background-color: #1D9BF0; /* Tailwind's blue-500 */
+    border-radius: 4px; /* Rounded edges */
+    z-index: -1; /* Places it behind the text */
+  }

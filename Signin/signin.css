@@ -147,11 +147,3 @@ input[type="button"]:active
 {
   opacity: 0.6;
 }
-
-
-.btnLight{
-  transition: box-shadow 0.3s ease;
-}
-.btnLight:hover{
-  box-shadow: 0 0 10px #0f0, 0 0 2px #0f0;
-}
