@@ -1,9 +1,11 @@
-import { getAuth, createUserWithEmailAndPassword } from "./firebase.js";
+import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup } from "./firebase.js";
 const auth = getAuth();
+const provider = new GoogleAuthProvider();
 let registerBtn = document.getElementById('register')
 let getEmail = document.getElementById('email')
 let getPassword = document.getElementById('password')
 let getName = document.getElementById('fullName')
+let googleBtn = document.getElementById('google')
 // click on register btn 
 registerBtn && registerBtn.addEventListener('click', () => {
     createUserWithEmailAndPassword(auth, getEmail.value, getPassword.value)
@@ -28,7 +30,7 @@ registerBtn && registerBtn.addEventListener('click', () => {
                 title: "Signed in successfully"
             });
             setTimeout(()=>{
-location.href = "./Dashboard/dashboard.html"
+            location.href = "./Dashboard/dashboard.html"
             },3000)
 
 
@@ -63,7 +65,7 @@ location.href = "./Dashboard/dashboard.html"
     getName.value = ""
 
 })
-
+// redirect to login btn 
 let loginBtn = document.getElementById('login')
 loginBtn.addEventListener('click',()=>{
 
@@ -71,3 +73,22 @@ loginBtn.addEventListener('click',()=>{
         location.href = "./Signin/signin.html"
     },2000)
 })
+// google pop up 
+googleBtn.addEventListener('click',(()=>{
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
+    console.log(credential)
+    setTimeout(()=>{
+        location.href= "../Dashboard/dashboard.html"
+    },3000)
+  }).catch((error) => {
+    const errorCode = error.code;
+    console.log(errorCode)
+    const errorMessage = error.message;
+    const email = error.customData.email;
+    const credential = GoogleAuthProvider.credentialFromError(error);
+  });
+}))

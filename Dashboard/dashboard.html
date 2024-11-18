@@ -20,10 +20,10 @@
 </head>
 
 <body class="bg-black text-white chirp">
-    <section class="grid grid-cols-8">
+    <section class="grid grid-cols-12 md:grid-cols-8">
         <!-- left side  -->
         <section
-            class="col-span-1 border-rightt text-white flex flex-col text-[19px] justify-between items-end h-[590px] pt-4 ">
+            class="col-span-2 md:col-span-1 border-rightt text-white flex flex-col text-[19px] justify-between items-end h-[590px] pt-4 ">
             <div class="fixed flex flex-col justify-center items-center pe-4">
                 <!-- twitter  -->
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 bi bi-twitter-x"
@@ -34,7 +34,7 @@
             </div>
 
             <!-- home  -->
-            <nav class="fixed bottom-32 flex flex-col items-center justify-between h-[380px] pe-2">
+            <nav class="fixed top-[90px] flex flex-col items-center justify-between h-[380px] pe-2">
                 <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 bi bi-house-door-fill"
                         viewBox="0 0 16 16">
@@ -92,11 +92,11 @@
                     </svg>
                 </a>
             </nav>
-            <figure class="fixed bottom-5 flex flex-col justify-center items-center pe-3 pt-4"><img
+            <figure class="fixed top-[520px] flex flex-col justify-center items-center pe-3 pt-4"><img
                     src="img/profile2.jpg" class="w-10 rounded-full" alt="..."></figure>
         </section>
         <!-- end of left sec  -->
-        <section class="border-rightt col-span-4 ...">
+        <section class="border-rightt col-span-10 md:col-span-4 ...">
             <!-- for you  -->
             <div class="flex justify-around px-5 py-2 items-center border-below">
                 <p class="chirp text-[15px] rounded-underline relative inline-block">For you</p>
@@ -541,7 +541,7 @@
 
         </section>
         <!-- right side content  -->
-        <div class="col-span-3 flex items-center flex-col pt-2 gap-3 ">
+        <div class="md:col-span-3 ps-3 pt-2 hidden md:block">
             <!-- <div class="flex items-center"> -->
             <!-- search div  -->
             <div

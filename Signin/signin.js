@@ -1,11 +1,12 @@
-import { getAuth, signInWithEmailAndPassword,sendPasswordResetEmail } from "../firebase.js";
+import { getAuth, signInWithEmailAndPassword,sendPasswordResetEmail,GoogleAuthProvider,signInWithPopup } from "../firebase.js";
 const auth = getAuth();
-
+const provider = new GoogleAuthProvider();
 let signUp = document.getElementById('signUp')
 let getEmail = document.getElementById('email')
 let getPassword = document.getElementById('password')
 let loginBtn = document.getElementById('login')
 let forgetPass = document.getElementById('forgetPassword')
+let googleBtn = document.getElementById('google')
 // loginBtn 
 loginBtn.addEventListener('click',(()=>{
     signInWithEmailAndPassword(auth, getEmail.value, getPassword.value)
@@ -17,7 +18,7 @@ loginBtn.addEventListener('click',(()=>{
         text: "Login Successfully",
       });
       setTimeout(()=>{
-        location.href = "./Dashboard/dashboard.html"
+        location.href = "../Dashboard/dashboard.html"
       },3000)
 
   })
@@ -80,7 +81,26 @@ forgetPass.addEventListener('click',(async()=>{
 signUp.addEventListener('click',(()=>{
     setTimeout(()=>{
         location.href = "../index.html"
-    },2000)
+    },4000)
+}))
+// google pop up 
+googleBtn.addEventListener('click',(()=>{
+  signInWithPopup(auth, provider)
+.then((result) => {
+  const credential = GoogleAuthProvider.credentialFromResult(result);
+  const token = credential.accessToken;
+  const user = result.user;
+  console.log(credential)
+  setTimeout(()=>{
+      location.href= "../Dashboard/dashboard.html"
+  })
+}).catch((error) => {
+  const errorCode = error.code;
+  console.log(errorCode)
+  const errorMessage = error.message;
+  const email = error.customData.email;
+  const credential = GoogleAuthProvider.credentialFromError(error);
+});
 }))
 
 
