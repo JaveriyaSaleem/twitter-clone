@@ -1,6 +1,6 @@
 import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,
     // firestore 
-    db,collection, addDoc
+    db,collection, addDoc,doc,setDoc
  } from "./firebase.js";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
@@ -14,11 +14,23 @@ registerBtn && registerBtn.addEventListener('click',() => {
 const email = getEmail.value.trim();
 const password = getPassword.value.trim();
 const fullName = getName.value.trim();
-    createUserWithEmailAndPassword(auth, getEmail.value, getPassword.value)
-        .then((userCredential) => {
+if(!email||!password||!fullName){
+    Swal.fire("Please fill out all the fields")
+    return
+}    
+createUserWithEmailAndPassword(auth, email, password)
+        .then(async(userCredential) => {
             // Signed up 
             const user = userCredential.user;
             console.log(user)
+            const uId = user.uid
+            try {
+                await setDoc(doc(db, "userData", uId), {
+                    FullName: fullName,
+                    Email: email,
+                    country: "USA"
+                  });
+                console.log("Document written with ID");
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -34,12 +46,15 @@ const fullName = getName.value.trim();
                     icon: "success",
                     title: "Signed in successfully"
                 });
+              } catch (e) {
+                console.error("Error adding document");
+              }
 
 
 
             setTimeout(()=>{
             location.href = "./Dashboard/dashboard.html"
-            },3000)
+            },4000)
 
 
         })

@@ -19,7 +19,7 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
-    console.log(uid)
+    console.log(user)
 
   } else {
 console.log("user signed out")
