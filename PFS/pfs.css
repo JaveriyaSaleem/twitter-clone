@@ -1,0 +1,8 @@
+.grayBorder{
+    border: 1px solid #2F3336;
+    border-radius: 20px;
+}
+.bottom{
+    border-bottom: 1px solid #2F3336;
+
+}

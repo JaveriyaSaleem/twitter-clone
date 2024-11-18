@@ -7,6 +7,13 @@ let allPost = document.getElementById('divOfAllPost')
 // let retweetBtn = document.getElementsByClassName('retweet')
 // let bookmarkBtn = document.getElementsByClassName('bookmark')
 // let viewsBtn = document.getElementsByClassName('views')
+// profile btn 
+let profileBtn = document.getElementById('profile')
+profileBtn.addEventListener('click',(()=>{
+setTimeout(()=>{
+    location.href="../PFS/pfs.html"
+},2000)
+}))
 // if user is signin 
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
