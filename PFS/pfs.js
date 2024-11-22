@@ -22,6 +22,7 @@ signOutBtn.addEventListener('click',()=>{
     console.log("didn't workk")
   });
 })
+// console.log(auth.user)
 let editBtn = document.getElementById('editBtn')
 // edit button 
 editBtn.addEventListener('click',(()=>{
@@ -29,37 +30,26 @@ let name = prompt("Name",nameUpdate.innerHTML)
 let profession = prompt("Profession",professionUpdate.innerHTML)
 let phoneNumber = prompt("Add your Number")
 let address = prompt('Address')
-
-// if user is sign in 
-onAuthStateChanged(auth, async(user) =>{
+onAuthStateChanged(auth, async(user) => {
   if (user) {
-   console.log(user)
     const uid = user.uid;
-    const myData = doc(db, "userData", uid);
-    await updateDoc(myData, {
-    FullName:name,
-    Profession: profession,
-    PhoneNumber: phoneNumber,
-    Address:address
+    console.log(user)
+    console.log("user signed in")
+    // update data 
+    const updatingData = doc(db, "userData", user);
+
+    // Set the "capital" field of the city 'DC'
+    await updateDoc(updatingData, {
+      updateName: name,
+      updateProfession: profession,
+      updatePhoneNumber: phoneNumber,
+      updateAddress: address,
+    });
+// if block complete here 
+  } else {
+console.log("signed out!")
+  }
 });
-try{
-  await updateProfile(auth.currentUser, {
-    displayName: name
-  })
-  alert("Profile updated!");
-  nameUpdate.innerHTML = name
-  nameUpdate2.innerHTML = name
-  professionUpdate.innerHTML = profession
-  professionUpdate2.innerHTML = profession
-  phone.innerHTML = phoneNum;
-
-  }catch(e){
-
-  } 
-  
-}else{
-console.log('signout')
-}});
 
 }))
 
