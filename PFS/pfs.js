@@ -5,11 +5,12 @@ let nameUpdate2 = document.getElementById("Name2")
 let professionUpdate = document.getElementById("profession")
 let professionUpdate2 = document.getElementById("profession2")
 let phone = document.getElementById('phoneNumber')
-let signOutBtn = document.getElementById('signOut')
+let signOutBtn = document.getElementById('signOutBtn')
 const auth = getAuth();
 // signout 
 signOutBtn.addEventListener('click',()=>{
   signOut(auth).then(() => {
+    console.log(auth.user)
     Swal.fire({
       icon: "success",
       text: "Signed Out Successfully!",
