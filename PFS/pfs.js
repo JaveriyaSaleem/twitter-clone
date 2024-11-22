@@ -41,12 +41,12 @@ console.log("signed out!")
 async function waitingForId(){
 try {
   const uidGet = await uidGeneration()
-  console.log(uidGet)
+  return uidGet
 } catch (error) {
   console.log(error)
 }
 }
-waitingForId()
+console.log(waitingForId())
 // console.log(auth.user)
 let editBtn = document.getElementById('editBtn')
 // edit button 
