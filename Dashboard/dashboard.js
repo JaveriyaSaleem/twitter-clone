@@ -24,6 +24,9 @@ onAuthStateChanged(auth, (user) => {
 
   } else {
 console.log("signed out!")
+setTimeout(()=>{
+location.href = "../Signin/signin.html"
+},2000)
   }
 });
 
