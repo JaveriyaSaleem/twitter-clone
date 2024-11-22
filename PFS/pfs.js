@@ -29,7 +29,7 @@ function uidGeneration(){
   onAuthStateChanged(auth, async(user) => {
   if (user) {
     uid = user.uid;
-    console.log(user)
+    console.log(uid)
     resolve(uid)
 // if block complete here 
   } else {
