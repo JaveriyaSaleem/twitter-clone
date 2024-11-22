@@ -22,6 +22,18 @@ signOutBtn.addEventListener('click',()=>{
     console.log("didn't workk")
   });
 })
+// user exists or not 
+let uid;
+onAuthStateChanged(auth, async(user) => {
+  if (user) {
+    uid = user.uid;
+    console.log(user)
+// if block complete here 
+  } else {
+console.log("signed out!")
+  }
+});
+console.log("user",uid)
 // console.log(auth.user)
 let editBtn = document.getElementById('editBtn')
 // edit button 
@@ -30,26 +42,7 @@ let name = prompt("Name",nameUpdate.innerHTML)
 let profession = prompt("Profession",professionUpdate.innerHTML)
 let phoneNumber = prompt("Add your Number")
 let address = prompt('Address')
-onAuthStateChanged(auth, async(user) => {
-  if (user) {
-    const uid = user.uid;
-    console.log(user)
-    console.log("user signed in")
-    // update data 
-    const updatingData = doc(db, "userData", user);
 
-    // Set the "capital" field of the city 'DC'
-    await updateDoc(updatingData, {
-      updateName: name,
-      updateProfession: profession,
-      updatePhoneNumber: phoneNumber,
-      updateAddress: address,
-    });
-// if block complete here 
-  } else {
-console.log("signed out!")
-  }
-});
 
 }))
 
