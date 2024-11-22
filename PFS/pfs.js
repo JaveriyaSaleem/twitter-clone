@@ -5,10 +5,10 @@ let nameUpdate2 = document.getElementById("Name2")
 let professionUpdate = document.getElementById("profession")
 let professionUpdate2 = document.getElementById("profession2")
 let phone = document.getElementById('phoneNumber')
-let signOut = document.getElementById('signOut')
+let signOutBtn = document.getElementById('signOut')
 const auth = getAuth();
 // signout 
-signOut.addEventListener('click',()=>{
+signOutBtn.addEventListener('click',()=>{
   signOut(auth).then(() => {
     Swal.fire({
       icon: "success",
@@ -18,7 +18,7 @@ signOut.addEventListener('click',()=>{
       location.href = "../Signin/signin.html"
     },3000)
   }).catch((error) => {
-    // An error happened.
+    console.log("didn't workk")
   });
 })
 let editBtn = document.getElementById('editBtn')
