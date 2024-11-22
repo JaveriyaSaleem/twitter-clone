@@ -24,16 +24,29 @@ signOutBtn.addEventListener('click',()=>{
 })
 // user exists or not 
 let uid;
-onAuthStateChanged(auth, async(user) => {
+function uidGeneration(){
+  return new Promise((resolve, reject) => {
+  onAuthStateChanged(auth, async(user) => {
   if (user) {
     uid = user.uid;
     console.log(user)
+    resolve(uid)
 // if block complete here 
   } else {
 console.log("signed out!")
   }
 });
-console.log("user",uid)
+  })
+}
+async function waitingForId(){
+try {
+  const uidGet = await uidGeneration()
+  console.log(uidGet)
+} catch (error) {
+  console.log(error)
+}
+}
+waitingForId()
 // console.log(auth.user)
 let editBtn = document.getElementById('editBtn')
 // edit button 
