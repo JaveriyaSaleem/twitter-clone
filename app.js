@@ -99,11 +99,36 @@ loginBtn.addEventListener('click',()=>{
 // google pop up 
 googleBtn.addEventListener('click',(()=>{
     signInWithPopup(auth, provider)
-  .then((result) => {
+  .then(async(result) => {
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential.accessToken;
     const user = result.user;
     console.log(credential)
+    try {
+        await setDoc(doc(db, "userData", user), {
+            FullName: fullName,
+            Email: email,
+          });
+        console.log("Document written with ID");
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "Signed in successfully"
+        });
+      } catch (e) {
+        console.error("Error adding document");
+      }
+
     setTimeout(()=>{
         location.href= "../Dashboard/dashboard.html"
     },3000)
