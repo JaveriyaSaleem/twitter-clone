@@ -23,7 +23,7 @@ signOutBtn.addEventListener('click',()=>{
   });
 })
 // user exists or not 
-let uid;
+let uid = null
 function uidGeneration(){
   return new Promise((resolve, reject) => {
   onAuthStateChanged(auth, async(user) => {
@@ -38,23 +38,36 @@ console.log("signed out!")
 });
   })
 }
+
+
 async function waitingForId(){
 try {
   const uidGet = await uidGeneration()
-  return uidGet
+
+  return uidGet +console.log(uidGet)
 } catch (error) {
   console.log(error)
 }
 }
-console.log(waitingForId())
+
 // console.log(auth.user)
 let editBtn = document.getElementById('editBtn')
 // edit button 
-editBtn.addEventListener('click',(()=>{
+editBtn.addEventListener('click',(async()=>{
 let name = prompt("Name",nameUpdate.innerHTML)
 let profession = prompt("Profession",professionUpdate.innerHTML)
 let phoneNumber = prompt("Add your Number")
 let address = prompt('Address')
+    // update data 
+    const updatingData = doc(db, "userData", waitingForId());
+    // Set the "capital" field of the city 'DC'
+    await updateDoc(updatingData, {
+      updateName: name,
+      updateProfession: profession,
+      updatePhoneNumber: phoneNumber,
+      updateAddress: address,
+    });
+    console.log(waitingForId())
 
 
 }))
