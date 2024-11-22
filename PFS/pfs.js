@@ -10,7 +10,7 @@ const auth = getAuth();
 // signout 
 signOutBtn.addEventListener('click',()=>{
   signOut(auth).then(() => {
-    console.log(auth.user)
+    console.log(auth)
     Swal.fire({
       icon: "success",
       text: "Signed Out Successfully!",
