@@ -7,7 +7,48 @@ let professionUpdate2 = document.getElementById("profession2")
 let phone = document.getElementById('phoneNumber')
 let addressUpdate = document.getElementById('address')
 let signOutBtn = document.getElementById('signOutBtn')
+let getInput = document.getElementById('Input')
+let getPFP = document.getElementById('pfImage')
+let createUrl;
+getInput.addEventListener('change',(()=>{
+  console.log(getInput.files[0])
+  let file = getInput.files[0]
+  createUrl = URL.createObjectURL(file)
+  console.log(createUrl)
+  getPFP.src = createUrl
+
+}))
+
 const auth = getAuth();
+let emailUser;
+let displayNameUser;
+// get the properties of currently signin user 
+function fetchDataFromUser() {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in
+      displayNameUser = user.displayName;
+      emailUser = user.email;
+      const photoURL = user.photoURL;
+      const emailVerified = user.emailVerified;
+      const uid = user.uid;
+      console.log("User Info:", {
+        displayName: displayNameUser,
+        email: emailUser,
+        photoURL,
+        emailVerified,
+        uid,
+      });
+      return emailUser,displayNameUser
+    } else {
+      console.log("No user is signed in.");
+    }
+    
+  });
+}
+fetchDataFromUser();
+
+
 // user exists or not 
 let uid = null
 function uidGeneration(){
@@ -45,10 +86,12 @@ let address = prompt('Address')
       Profession: profession,
       PhoneNumber: phoneNumber,
       Address: address,
-      timestamp: serverTimestamp()
+      timestamp: serverTimestamp(),
+      Email: emailUser,
+      Image: createUrl
       
     });
-    console.log(uidGeneration())
+    console.log(await uidGeneration())
     const getData = await getDoc(updatingData);
 
     if (getData.exists()) {
@@ -60,6 +103,10 @@ let address = prompt('Address')
     professionUpdate2.innerHTML = data.Profession
     phone.innerHTML = data.PhoneNumber
     addressUpdate.innerHTML = data.Address
+    emailGet.innerHTML = data.Email
+    getPFP.src = createUrl
+
+
  
 
     } else {
@@ -80,6 +127,8 @@ if (getData.exists()) {
   professionUpdate2.innerHTML = data.Profession
   phone.innerHTML = data.PhoneNumber
   addressUpdate.innerHTML = data.Address
+  emailGet.innerHTML = data.Email
+  getPFP.src = data.Image
 
 } else {
   // docSnap.data() will be undefined in this case
