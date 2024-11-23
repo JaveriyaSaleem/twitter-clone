@@ -129,13 +129,13 @@ googleBtn.addEventListener('click',(async()=>{
         location.href= "../Dashboard/dashboard.html"
     },3000)
 
-    }
-    catch((error) => {
+    }catch(error){
     const errorCode = error.code;
     console.log(errorCode)
     const errorMessage = error.message;
     const email = error.customData.email;
     const credential = GoogleAuthProvider.credentialFromError(error);
-  });
+  };
 }))
+
 
