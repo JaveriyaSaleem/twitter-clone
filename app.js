@@ -98,18 +98,21 @@ loginBtn.addEventListener('click',()=>{
 })
 // google pop up 
 googleBtn.addEventListener('click',(async()=>{
-    try{
-        let result = await signInWithPopup(auth, provider)
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-        console.log(credential)
-        setDoc(doc(db, "userData", user), {
-            FullName: fullName,
-            Email: email,
-          });
-          console.log("Document written with ID");
-        const Toast = Swal.mixin({
+    signInWithPopup(auth, provider)
+  .then(async(result) => {    
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;   
+    const user = result.user;
+    let getId= user.uid
+    console.log(getId)
+    console.log(credential)
+    await setDoc(doc(db, "userData", getId), {
+        FullName: getName.innerHTML,
+        Email: getEmail.innerHTML,
+        Country: "USA"
+      });
+      console.log("Document written with ID",getEmail.innerHTML);
+        const Toast = await Swal.mixin({
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -124,18 +127,19 @@ googleBtn.addEventListener('click',(async()=>{
             icon: "success",
             title: "Signed in successfully"
         });
-                
-    setTimeout(()=>{
-        location.href= "../Dashboard/dashboard.html"
-    },3000)
+        setTimeout(()=>{
+            location.href= "../Dashboard/dashboard.html"
+        },4000)
 
-    }catch(error){
+
+  }).catch((error) => {
     const errorCode = error.code;
-    console.log(errorCode)
     const errorMessage = error.message;
-    const email = error.customData.email;
+    // const email = error.customData.email;
     const credential = GoogleAuthProvider.credentialFromError(error);
-  };
+
+  });
+
 }))
 
 
