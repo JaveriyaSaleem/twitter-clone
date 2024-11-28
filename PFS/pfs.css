@@ -4,5 +4,23 @@
 }
 .bottom{
     border-bottom: 1px solid #2F3336;
+    
+}
+.grayyy{
+    border: 1px solid #2F3336;
 
 }
+.animation{
+transition: animation 2s;
+animation: animationAnime 2s ease;
+}
+@keyframes animationAnime {
+    0%{
+height: 2000px;
+    }
+    100%{
+        height: 600px;
+            }
+
+}
+

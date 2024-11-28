@@ -1,4 +1,6 @@
 import { getAuth, onAuthStateChanged,updateProfile,doc, updateDoc,db,signOut,serverTimestamp,getDoc } from "../firebase.js";
+// cloudinary 
+
 let emailGet = document.getElementById('getEmail')
 let nameUpdate = document.getElementById("Name")
 let nameUpdate2 = document.getElementById("Name2")
@@ -7,21 +9,22 @@ let professionUpdate2 = document.getElementById("profession2")
 let phone = document.getElementById('phoneNumber')
 let addressUpdate = document.getElementById('address')
 let signOutBtn = document.getElementById('signOutBtn')
-let getInput = document.getElementById('Input')
 let getPFP = document.getElementById('pfImage')
-let createUrl;
-getInput.addEventListener('change',(()=>{
-  console.log(getInput.files[0])
-  let file = getInput.files[0]
-  createUrl = URL.createObjectURL(file)
-  console.log(createUrl)
-  getPFP.src = createUrl
-
-}))
-
+let getFormBtn = document.getElementById('formBtn')
+let getModal = document.getElementById('modalBody')
+let modalFullName = document.getElementById('modalFullName')
+let modalProfession = document.getElementById('modalProfession')
+let modalPhoneNumber = document.getElementById('modalPhoneNum')
+let modalAddress = document.getElementById('modalAddress')
+let modalInput = document.getElementById('modalPfpInput')
+let doneBtnModal = document.getElementById('doneBtn')
+let editBtn = document.getElementById('editBtn')
 const auth = getAuth();
 let emailUser;
 let displayNameUser;
+let createUrl;
+let uid = null;
+let getData;
 // get the properties of currently signin user 
 function fetchDataFromUser() {
   onAuthStateChanged(auth, (user) => {
@@ -47,10 +50,8 @@ function fetchDataFromUser() {
   });
 }
 fetchDataFromUser();
-
-
 // user exists or not 
-let uid = null
+
 function uidGeneration(){
   return new Promise((resolve, reject) => {
   onAuthStateChanged(auth, async(user) => {
@@ -66,53 +67,61 @@ location.href = "../index.html"
 });
   })
 }
+// donebtn of modal 
+doneBtnModal.addEventListener("click",(async()=>{
 
+// update data 
+try{
+  const updatingData = doc(db, "userData", await uidGeneration());
+updateDoc(updatingData, {
+  FullName: modalFullName.value,
+  Profession: modalProfession.value,
+  PhoneNumber: modalPhoneNumber.value,
+  Address: modalAddress.value,
+  timestamp: serverTimestamp(),
+  Email: emailUser,
+  
+});
+Swal.fire({
+  icon: "success",
+  text: "Data Updated Successfully!",
+});
+const getData = await getDoc(updatingData);
 
+if (getData.exists()) {
+console.log("Document data:", getData.data());
+const data = getData.data()
+nameUpdate2.innerHTML = data.FullName
+nameUpdate.innerHTML = data.FullName
+professionUpdate.innerHTML = data.Profession
+professionUpdate2.innerHTML = data.Profession
+phone.innerHTML = data.PhoneNumber
+addressUpdate.innerHTML = data.Address
+emailGet.innerHTML = data.Email
 
-// console.log(auth.user)
-let editBtn = document.getElementById('editBtn')
-// gettingdata
-let getData;
-// edit button 
-editBtn.addEventListener('click',(async()=>{
-let name = prompt("Name",nameUpdate.innerHTML)
-let profession = prompt("Profession",professionUpdate.innerHTML)
-let phoneNumber = prompt("Add your Number")
-let address = prompt('Address')
-    // update data 
-    const updatingData = doc(db, "userData", await uidGeneration());
-    updateDoc(updatingData, {
-      FullName: name,
-      Profession: profession,
-      PhoneNumber: phoneNumber,
-      Address: address,
-      timestamp: serverTimestamp(),
-      Email: emailUser,
-      Image: createUrl
-      
-    });
-    console.log(await uidGeneration())
-    const getData = await getDoc(updatingData);
-
-    if (getData.exists()) {
-    console.log("Document data:", getData.data());
-    const data = getData.data()
-    nameUpdate2.innerHTML = data.FullName
-    nameUpdate.innerHTML = data.FullName
-    professionUpdate.innerHTML = data.Profession
-    professionUpdate2.innerHTML = data.Profession
-    phone.innerHTML = data.PhoneNumber
-    addressUpdate.innerHTML = data.Address
-    emailGet.innerHTML = data.Email
-    getPFP.src = createUrl
-
-
- 
-
-    } else {
-    console.log("No such document!");
+} else {
+console.log("No such document!");
 }
+setTimeout(()=>{
+  getModal.classList.add('hidden')
+},2000)
+}catch(e){
+console.log(e)
+}
+
 }))
+
+
+getFormBtn.addEventListener('click',(()=>{
+  // getModal.classList.add('')
+  getModal.classList.remove('hidden')
+  modalFullName.value = nameUpdate.innerHTML
+  modalProfession.value = professionUpdate.innerHTML
+  modalPhoneNumber.value = phone.innerHTML
+  modalAddress.value = addressUpdate.innerHTML
+
+}))
+
 // fetching data when reload 
 async function fetchDataa(){
 const datafromFirestore = doc(db, "userData", await uidGeneration());
@@ -128,7 +137,6 @@ if (getData.exists()) {
   phone.innerHTML = data.PhoneNumber
   addressUpdate.innerHTML = data.Address
   emailGet.innerHTML = data.Email
-  getPFP.src = data.Image
 
 } else {
   // docSnap.data() will be undefined in this case
