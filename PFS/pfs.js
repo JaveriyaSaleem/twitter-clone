@@ -1,6 +1,7 @@
 import { getAuth, onAuthStateChanged,updateProfile,doc, updateDoc,db,signOut,serverTimestamp,getDoc } from "../firebase.js";
 // cloudinary 
-
+let cloudName = "dmpwebopc"
+let unsignedUploadPreset = "ugiqcl22"
 let emailGet = document.getElementById('getEmail')
 let nameUpdate = document.getElementById("Name")
 let nameUpdate2 = document.getElementById("Name2")
@@ -25,6 +26,7 @@ let displayNameUser;
 let createUrl;
 let uid = null;
 let getData;
+let resourceUrl;
 // get the properties of currently signin user 
 function fetchDataFromUser() {
   onAuthStateChanged(auth, (user) => {
@@ -67,6 +69,23 @@ location.href = "../index.html"
 });
   })
 }
+modalInput.addEventListener('change',(()=>{
+  console.log(modalInput.files[0])
+  const getImage = modalInput.files[0]
+  let url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+  let fd = new FormData() //empty data
+  fd.append("file",getImage)
+        fd.append("upload_preset",unsignedUploadPreset)
+        fetch((url),{
+          method:"POST",
+          body:fd,
+      }).then((response)=>response.json())
+      .then((data)=>{
+          console.log(data)
+          resourceUrl = data.secure_url
+          console.log(resourceUrl)
+        })
+}))
 // donebtn of modal 
 doneBtnModal.addEventListener("click",(async()=>{
 
@@ -80,6 +99,7 @@ updateDoc(updatingData, {
   Address: modalAddress.value,
   timestamp: serverTimestamp(),
   Email: emailUser,
+  ImageUrl: resourceUrl
   
 });
 Swal.fire({
@@ -98,6 +118,7 @@ professionUpdate2.innerHTML = data.Profession
 phone.innerHTML = data.PhoneNumber
 addressUpdate.innerHTML = data.Address
 emailGet.innerHTML = data.Email
+getPFP.src = data.ImageUrl
 
 } else {
 console.log("No such document!");
@@ -137,6 +158,7 @@ if (getData.exists()) {
   phone.innerHTML = data.PhoneNumber
   addressUpdate.innerHTML = data.Address
   emailGet.innerHTML = data.Email
+  getPFP.src = data.ImageUrl
 
 } else {
   // docSnap.data() will be undefined in this case

@@ -1,3 +1,10 @@
+@font-face {
+    font-family:Chirp;
+    src: url(/Font/89e193b98453504c456698844de4c52b.otf);
+}
+.chirp{
+    font-family:Chirp,Arial, Helvetica, sans-serif;
+}
 .grayBorder{
     border: 1px solid #2F3336;
     border-radius: 20px;
