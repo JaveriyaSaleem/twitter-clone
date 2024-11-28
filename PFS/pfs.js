@@ -19,7 +19,9 @@ let modalPhoneNumber = document.getElementById('modalPhoneNum')
 let modalAddress = document.getElementById('modalAddress')
 let modalInput = document.getElementById('modalPfpInput')
 let doneBtnModal = document.getElementById('doneBtn')
+let homeBtnSpiner = document.getElementById('homeBtnSpiner')
 let editBtn = document.getElementById('editBtn')
+let homeBtn = document.getElementById('homeBtn')
 const auth = getAuth();
 let emailUser;
 let displayNameUser;
@@ -27,6 +29,13 @@ let createUrl;
 let uid = null;
 let getData;
 let resourceUrl;
+// redirecting to home 
+homeBtn.addEventListener('click',(()=>{
+  homeBtnSpiner.classList.remove('hidden')
+  setTimeout(()=>{
+    location.href = "../Dashboard/dashboard.html"
+  },2000)
+}))
 // get the properties of currently signin user 
 function fetchDataFromUser() {
   onAuthStateChanged(auth, (user) => {
@@ -140,6 +149,7 @@ getFormBtn.addEventListener('click',(()=>{
   modalProfession.value = professionUpdate.innerHTML
   modalPhoneNumber.value = phone.innerHTML
   modalAddress.value = addressUpdate.innerHTML
+
 
 }))
 

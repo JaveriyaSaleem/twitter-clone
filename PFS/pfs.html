@@ -23,8 +23,18 @@
 </head>
 
 <body class="chirp bg-black">
+  
   <div class="container">
-    <div class="main-body pt-5">
+    <div class="main-body pt-2">
+<nav class="p-2 flex justify-between items-center bottom mb-2"><i class="text-[34px] text-white fa-brands fa-x-twitter"></i> <div>
+
+<button id="homeBtn" class="btn border border-[#2F3336] text-white bg-blue-500 shadow-lg shadow-blue-500/50">Home
+  <div class="hidden spinner-border spinner-border-sm" role="status" id="homeBtnSpiner">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</button></div></nav>
+ 
+ 
       <!-- modal body  -->
       <div  id="modalBody"
       class="hidden animation fixed z-50 flex justify-center items-center w-full md:inset-0 ">

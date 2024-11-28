@@ -28,14 +28,15 @@ createUserWithEmailAndPassword(auth, email, password)
                 await setDoc(doc(db, "userData", uId), {
                     FullName: fullName,
                     Email: email,
-                    country: "USA"
                   });
+                  await setDoc(doc(db, "Posts", uId), {
+                });
                 console.log("Document written with ID");
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
                     showConfirmButton: false,
-                    timer: 3000,
+                    timer: 2000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
@@ -106,6 +107,8 @@ googleBtn.addEventListener('click',(async()=>{
     let getId= user.uid
     console.log(getId)
     console.log(credential)
+    await setDoc(doc(db, "Posts", getId), {
+    });
     await setDoc(doc(db, "userData", getId), {
         FullName: getName.innerHTML,
         Email: getEmail.innerHTML,
