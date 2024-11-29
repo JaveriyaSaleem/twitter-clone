@@ -8,11 +8,19 @@ let leftPfp = document.getElementById('leftPfp')
 let changingNameFromDisplayName = document.getElementById('changingNameFromDisplayName')
 let makingHandleFromDisplayName = document.getElementById('makingHandleFromDisplayName')
 let existedTweet = document.getElementById('existedTweet')
+let loaderForPost = document.getElementById('loaderForPost')
 let uid;
 let handelCreated;
 let dataObject = new Object()
 let displayName;
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+       loaderForPost.classList.add('hidden')
+    }, 2000);
 
+    // Your actual loading code executes here
+    console.log("Page is loading in the background...");
+});
 console.log(dataObject)
 console.log(dashboardPfp)
 profileBtn.addEventListener('click',(()=>{
