@@ -5,9 +5,14 @@ let allPost = document.getElementById('divOfAllPost')
 let dashboardPfp = document.getElementById('dashboardPfp')
 let profileBtn = document.getElementById('profile')
 let leftPfp = document.getElementById('leftPfp')
+let changingNameFromDisplayName = document.getElementById('changingNameFromDisplayName')
+let makingHandleFromDisplayName = document.getElementById('makingHandleFromDisplayName')
+let existedTweet = document.getElementById('existedTweet')
 let uid;
 let handelCreated;
 let dataObject = new Object()
+let displayName;
+
 console.log(dataObject)
 console.log(dashboardPfp)
 profileBtn.addEventListener('click',(()=>{
@@ -17,13 +22,14 @@ setTimeout(()=>{
 }))
 // if user is signin 
 const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  if (user) {
+onAuthStateChanged(auth, async(user) => {
+  if (await user) {
     uid = user.uid;
     console.log(uid)
     console.log("user signed in")
+}
 
-  } else {
+   else {
 console.log("signed out!")
 setTimeout(()=>{
 location.href = "../Signin/signin.html"
@@ -67,6 +73,9 @@ async function gettingData() {
           let result = newOne.split(" ")
           handelCreated = result.join("")
          console.log(handelCreated)
+         changingNameFromDisplayName.innerHTML = callData.FullName
+         makingHandleFromDisplayName.innerHTML = "@"+handelCreated
+         existedTweet.src = callData.ImageUrl
 
         } else {
           // docSnap.data() will be undefined in this case
@@ -165,6 +174,19 @@ postBtn.addEventListener('click',async()=>{
 
     makingPost.value = ""  
   })
+  async function fetchWhenReload(){
+    const docRef = doc(db, "Posts", await fetchDataa());
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  console.log("Document data:", docSnap.data().PostContent);
+} else {
+  // docSnap.data() will be undefined in this case
+  console.log("No such document!");
+}
+  }
+  fetchWhenReload()
+//   window.addEventListener('load',fetchWhenReload())
 
 
 

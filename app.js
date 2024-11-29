@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,
+import { getAuth, createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,updateProfile,
     // firestore 
     db,collection, addDoc,doc,setDoc
  } from "./firebase.js";
@@ -31,6 +31,15 @@ createUserWithEmailAndPassword(auth, email, password)
                   });
                   await setDoc(doc(db, "Posts", uId), {
                 });
+                console.log(auth.currentUser)
+                const saveUser = auth.currentUser
+                updateProfile(await auth.currentUser, {
+                    displayName: fullName
+                  }).then(async() => {
+                    console.log("displayName Updated",await auth.currentUser.displayName)
+                  }).catch((error) => {
+                    console.log(error)
+                  });
                 console.log("Document written with ID");
                 const Toast = Swal.mixin({
                     toast: true,
@@ -50,12 +59,9 @@ createUserWithEmailAndPassword(auth, email, password)
               } catch (e) {
                 console.error("Error adding document");
               }
-
-
-
             setTimeout(()=>{
-            location.href = "./Dashboard/dashboard.html"
-            },4000)
+            location.href = "./PFS/pfs.html"
+            },3000)
 
 
         })
@@ -112,7 +118,6 @@ googleBtn.addEventListener('click',(async()=>{
     await setDoc(doc(db, "userData", getId), {
         FullName: getName.innerHTML,
         Email: getEmail.innerHTML,
-        Country: "USA"
       });
       console.log("Document written with ID",getEmail.innerHTML);
         const Toast = await Swal.mixin({
@@ -131,7 +136,7 @@ googleBtn.addEventListener('click',(async()=>{
             title: "Signed in successfully"
         });
         setTimeout(()=>{
-            location.href= "../Dashboard/dashboard.html"
+            location.href=  "./PFS/pfs.html"
         },4000)
 
 
