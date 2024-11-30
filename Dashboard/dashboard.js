@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged,db,getDoc,doc, setDoc,arrayUnion,updateDoc } from "../firebase.js";
+import { getAuth, onAuthStateChanged,db,getDoc,doc, setDoc,arrayUnion,updateDoc,collection,getDocs } from "../firebase.js";
 let makingPost = document.getElementById('textArea')
 let postBtn = document.getElementById('postNow')
 let allPost = document.getElementById('divOfAllPost')
@@ -13,16 +13,38 @@ let uid;
 let handelCreated;
 let dataObject = new Object()
 let displayName;
+
+
+async function gettingEntireData(){
+    try {
+//  calling all the data from collections 
+const PostCollection = await getDocs(collection(db, "Posts"));
+PostCollection.forEach((post) => {
+    // getting user posts 
+    console.log(post.id, " => ", post.data().PostContent)
+    
+});
+// getting User profile and image from userdata
+const userProfile = await getDocs(collection(db, "userData"));
+userProfile.forEach((user) => {
+    console.log(user.id, " => ", user.data().ImageUrl)
+})
+    } catch (error) {
+        console.log(error)
+    }
+    console.log(arrayForUserProfile,"user")
+    console.log(arrayForPostData,"post")
+}
+gettingEntireData()
+
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
        loaderForPost.classList.add('hidden')
     }, 2000);
 
-    // Your actual loading code executes here
-    console.log("Page is loading in the background...");
 });
-console.log(dataObject)
-console.log(dashboardPfp)
+// console.log(dataObject)
+// console.log(dashboardPfp)
 profileBtn.addEventListener('click',(()=>{
 setTimeout(()=>{
     location.href="../PFS/pfs.html"
@@ -33,12 +55,12 @@ const auth = getAuth();
 onAuthStateChanged(auth, async(user) => {
   if (await user) {
     uid = user.uid;
-    console.log(uid)
-    console.log("user signed in")
+    // console.log(uid)
+    // console.log("user signed in")
 }
 
    else {
-console.log("signed out!")
+// console.log("signed out!")
 setTimeout(()=>{
 location.href = "../Signin/signin.html"
 },2000)
@@ -69,18 +91,18 @@ async function gettingData() {
         const docSnap = await getDoc(callingData);
         
         if (docSnap.exists()) {
-          console.log("Document data:", docSnap.data());
+        //   console.log("Document data:", docSnap.data());
           let callData = docSnap.data()
           leftPfp.src = callData.ImageUrl
           dashboardPfp.src =  callData.ImageUrl
           dataObject.FullName = callData.FullName
           dataObject.Image = callData.ImageUrl
-         console.log(dataObject,"data Object")
+        //  console.log(dataObject,"data Object")
           let makingHandle = callData.FullName
           let newOne = makingHandle.toLowerCase()
           let result = newOne.split(" ")
           handelCreated = result.join("")
-         console.log(handelCreated)
+        //  console.log(handelCreated)
          changingNameFromDisplayName.innerHTML = callData.FullName
          makingHandleFromDisplayName.innerHTML = "@"+handelCreated
          existedTweet.src = callData.ImageUrl
@@ -205,7 +227,7 @@ if (docSnap.exists()) {
     createElement.setAttribute('class','grid grid-cols-10 gap-2  border-below py-2 px-2')
     allPost.prepend(createElement)
     let postDiv = document.getElementById('post')
-    console.log(index)
+    // console.log(index)
     postDiv.innerHTML +=`<!-- pfp  -->
                   <figure class="flex justify-end items-start h-100"><img src="${await dataObject.Image}" class="w-10 rounded-full"
                           alt="..."></figure>
@@ -278,7 +300,7 @@ if (docSnap.exists()) {
                       </div>
                   </div>`
    });
-  console.log("Document data:", docSnap.data().PostContent);
+//   console.log("Document data:", docSnap.data().PostContent);
 
 } else {
   // docSnap.data() will be undefined in this case
