@@ -29,8 +29,6 @@ createUserWithEmailAndPassword(auth, email, password)
                     FullName: fullName,
                     Email: email,
                   });
-                  await setDoc(doc(db, "Posts", uId), {
-                });
                 console.log(auth.currentUser)
                 const saveUser = auth.currentUser
                 updateProfile(await auth.currentUser, {
@@ -113,8 +111,6 @@ googleBtn.addEventListener('click',(async()=>{
     let getId= user.uid
     console.log(getId)
     console.log(credential)
-    await setDoc(doc(db, "Posts", getId), {
-    });
     await setDoc(doc(db, "userData", getId), {
         FullName: getName.innerHTML,
         Email: getEmail.innerHTML,
