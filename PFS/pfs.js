@@ -35,6 +35,7 @@ homeBtn.addEventListener('click',(()=>{
   setTimeout(()=>{
     location.href = "../Dashboard/dashboard.html"
   },2000)
+  
 }))
 // get the properties of currently signin user 
 function fetchDataFromUser() {
