@@ -121,7 +121,7 @@ async function gettingData() {
 gettingData()
 // posting
 postBtn.addEventListener('click',()=>{
-    homeBtnSpiner.classList.remove('hidden')
+    homeBtnSpiner3.classList.remove('hidden')
     setTimeout(async()=>{
         const postData = {
             UID: await fetchDataa(),
@@ -213,7 +213,7 @@ postBtn.addEventListener('click',()=>{
                           </div>
                       </div>`                    
         makingPost.value = "" 
-        homeBtnSpiner.classList.add('hidden') 
+        homeBtnSpiner3.classList.add('hidden') 
     },3000)
     
   })
@@ -231,20 +231,20 @@ async function fetchWhenReload(){
           console.log(doc.id, " => ", doc.data());
           let makeTime = doc.data().Timestamp.toDate()
           let date = new Date(makeTime)
-          let time = moment(date).format("MMM Do YY")
+          let time = moment(date).format("MM-DD")
           console.log(time)
 
           let createElement = document.createElement('section')
           createElement.setAttribute('id','post')
-          createElement.setAttribute('class','grid grid-cols-10 gap-2  border-below py-2 px-2')
+          createElement.setAttribute('class','grid grid-cols-12 sm:grid-cols-10 gap-2  border-below py-2 px-2')
           allPost.prepend(createElement)
           let postDiv = document.getElementById('post')
         //   adding post 
          postDiv.innerHTML  += `<!-- pfp  -->
-                        <figure class="flex justify-end items-start h-100"><img src="${doc.data().ImageUrl}" class="w-10 rounded-full"
+                        <figure class="col-span-2 sm:col-span-1 flex justify-end items-start h-100"><img src="${doc.data().ImageUrl}" class="w-100 rounded-full"
                                 alt="..."></figure>
                         <!-- post div  -->
-                        <div class="col-span-9 ... pe-2">
+                        <div class="col-span-10 sm:col-span-9 ... pe-2">
                             <!-- handle name pfp  -->
                             <div class="flex justify-between">
                                 <div class="flex gap-1">

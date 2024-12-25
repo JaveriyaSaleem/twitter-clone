@@ -30,6 +30,9 @@ let uid = null;
 let getData;
 let resourceUrl;
 // redirecting to home 
+document.getElementById('hideBtn').addEventListener('click',(()=>{
+  getModal.classList.add('hidden')
+}))
 homeBtn.addEventListener('click',(()=>{
   homeBtnSpiner.classList.remove('hidden')
   setTimeout(()=>{

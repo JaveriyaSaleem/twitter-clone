@@ -82,18 +82,16 @@
                     </svg>
                 </a>
                 <!-- profile -->
-                <a id="profile" class="cursor-pointer" data-popover-target="popover-left" data-popover-placement="left">
+                <a id="profile" class="cursor-pointer " data-tooltip-target="tooltip-dark">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7   bi bi-person"
                         viewBox="0 0 16 16">
                         <path
                             d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
                     </svg>
                 </a>
-                <div data-popover id="popover-left" role="tooltip" class="absolute z-40 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                    <div class="px-3 py-2">
-                        <p>Edit your profile</p>
-                    </div>
-                    <div data-popper-arrow></div>
+                <div id="tooltip-dark" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700 w-28">
+                    Edit Profile
+                    <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <!-- see more  -->
                 <div class="flex items-center">
@@ -120,8 +118,8 @@
         <!-- end of left sec  -->
         <section class="border-rightt col-span-12 md:col-span-4 relative">
             <!-- nav of mobile  -->
-            <div class="block md:hidden py-8 border-below ">
-            <div class="fixed top-0 w-full">
+            <div class="fixed top-0 w-full block md:hidden border-below bg-black">
+            <div class="">
                 <nav class="">
                     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-2 py-3">
                       <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -164,19 +162,19 @@
             </div>
             </div>
             <!-- make post  -->
-            <div class="grid grid-cols-10 gap-2 items-center border-below py-2 px-2">
+            <div class="grid grid-cols-12 sm:grid-cols-10 gap-2 items-center border-below pt-20 md:pt-1 px-2">
                 <!-- pfp  -->
-                <figure class="flex justify-end items-start h-100 "><img src="img/profile2.jpg"
-                        class="w-10 rounded-full" alt="..." id="dashboardPfp"></figure>
+                <figure class="col-span-2 sm:col-span-1 flex justify-end items-start h-100 "><img src="img/profile2.jpg"
+                        class="sm:w-100 rounded-full" alt="..." id="dashboardPfp"></figure>
                 <!-- make post text area  -->
                  <!-- write something  -->
-                <div class="col-span-9 ... pe-2 outline-none"><textarea id="textArea" type="text" placeholder="What is happening?!"
+                <div class="col-span-10 sm:col-span-9 ... pe-2 outline-none"><textarea id="textArea" type="text" placeholder="What is happening?!"
                         class="text-[20px] bg-transparent  resize-none w-100 border-t-transparent border-s-transparent border-e-transparent border-below h-[100px]"></textarea>
                     <!-- below post icons  -->
-                    <div class="flex items-center justify-between py-1">
+                    <div class="flex items-center justify-between py-2">
                         <!-- icons  -->
                          <!-- image  -->
-                        <div class="flex items-center gap-6"> <i class="fa-regular fa-image text-[#1D9BF0] hover:shadow-[0_0_10px_#1D9BF0,_0_0_20px_#1D9BF0] rounded-full"></i>
+                        <div class="flex items-center gap-2 sm:gap-6"> <i class="fa-regular fa-image text-[#1D9BF0] hover:shadow-[0_0_10px_#1D9BF0,_0_0_20px_#1D9BF0] rounded-full"></i>
                            
                             <!-- poll  -->
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -212,7 +210,7 @@
                             </svg>
                         </div>
                         <!-- on click post  -->
-                        <button class="bg-[#1D9BF0] py-1 px-3 rounded-full font-bold" id="postNow">Post   <div class="hidden spinner-border spinner-border-sm" role="status" id="homeBtnSpiner">
+                        <button class="bg-[#1D9BF0] py-1 px-3 rounded-full font-bold" id="postNow">Post   <div class="hidden spinner-border spinner-border-sm" role="status" id="homeBtnSpiner3">
                             <span class="visually-hidden">Loading...</span>
                           </div></button>
                     </div>
@@ -224,12 +222,12 @@
             <main id="divOfAllPost">
             <!-- all post section  -->
             <!-- users post  1st-->  
-            <section class="grid grid-cols-10 gap-2  border-below py-2 px-2">
+            <section class="grid grid-cols-12 sm:grid-cols-10 gap-2  border-below py-2 px-2">
                 <!-- pfp  -->
-                <figure class="flex justify-end items-start h-100"><img src="img/profile2.jpg" class="w-10 rounded-full"
+                <figure class="col-span-2 sm:col-span-1 flex justify-end items-start h-100"><img src="img/profile2.jpg" class="w-100 rounded-full"
                         alt="..." id="existedTweet"></figure>
                 <!-- post div  -->
-                <div class="col-span-9 ... pe-2">
+                <div class="col-span-10 sm:col-span-9 ... pe-2">
                     <!-- handle name pfp  -->
                     <div class="flex justify-between">
                         <div class="flex gap-1">
