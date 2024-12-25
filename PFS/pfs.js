@@ -116,23 +116,23 @@ Swal.fire({
   icon: "success",
   text: "Data Updated Successfully!",
 });
-const getData = await getDoc(updatingData);
+// const getData = await getDoc(updatingData);
 
-if (getData.exists()) {
-console.log("Document data:", getData.data());
-const data = getData.data()
-nameUpdate2.innerHTML = data.FullName
-nameUpdate.innerHTML = data.FullName
-professionUpdate.innerHTML = data.Profession
-professionUpdate2.innerHTML = data.Profession
-phone.innerHTML = data.PhoneNumber
-addressUpdate.innerHTML = data.Address
-emailGet.innerHTML = data.Email
-getPFP.src = data.ImageUrl
+// if (getData.exists()) {
+// console.log("Document data:", getData.data());
+// const data = getData.data()
+// nameUpdate2.innerHTML = data.FullName
+// nameUpdate.innerHTML = data.FullName
+// professionUpdate.innerHTML = data.Profession
+// professionUpdate2.innerHTML = data.Profession
+// phone.innerHTML = data.PhoneNumber
+// addressUpdate.innerHTML = data.Address
+// emailGet.innerHTML = data.Email
+// getPFP.src = data.ImageUrl
 
-} else {
-console.log("No such document!");
-}
+// } else {
+// console.log("No such document!");
+// }
 setTimeout(()=>{
   getModal.classList.add('hidden')
 },2000)

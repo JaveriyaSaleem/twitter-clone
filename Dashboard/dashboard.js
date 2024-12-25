@@ -1,4 +1,4 @@
-import { orderBy,getAuth, onAuthStateChanged,db,getDoc,doc,query, where, setDoc,arrayUnion,updateDoc,collection,getDocs, serverTimestamp, addDoc } from "../firebase.js";
+import { signOut,orderBy,getAuth, onAuthStateChanged,db,getDoc,doc,query, where, setDoc,arrayUnion,updateDoc,collection,getDocs, serverTimestamp, addDoc } from "../firebase.js";
 let makingPost = document.getElementById('textArea')
 let postBtn = document.getElementById('postNow')
 let allPost = document.getElementById('divOfAllPost')
@@ -12,7 +12,10 @@ let loaderForPost = document.getElementById('loaderForPost')
 let uid;
 let handelCreated;
 let dataObject = new Object()
-let displayName;
+let writePost = document.getElementById('writePost')
+writePost.addEventListener('click',(()=>{
+    location.href = "../PFS/pfs.html"
+}))
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -25,6 +28,28 @@ profileBtn.addEventListener('click',(()=>{
 setTimeout(()=>{
     location.href="../PFS/pfs.html"
 },2000)
+}))
+document.getElementById('editPfp').addEventListener('click',(()=>{
+    document.getElementById('homeBtnSpiner').classList.remove('hidden')
+    setTimeout(()=>{
+    location.href="../PFS/pfs.html"
+},2000)
+}))
+document.getElementById('logOutBtn').addEventListener('click',(()=>{
+    document.getElementById('homeBtnSpiner2').classList.remove('hidden')
+    signOut(auth).then(() => {
+        console.log(auth)
+        Swal.fire({
+          icon: "success",
+          text: "Signed Out Successfully!",
+        });
+        setTimeout(()=>{
+          location.href = "../Signin/signin.html"
+        },3000)
+      }).catch((error) => {
+        console.log("didn't workk")
+      });
+
 }))
 // if user is signin 
 const auth = getAuth();

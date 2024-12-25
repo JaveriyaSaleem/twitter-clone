@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword,sendPasswordResetEmail,GoogleAuthProvider,signInWithPopup } from "../firebase.js";
+import { getAuth, signInWithEmailAndPassword,sendPasswordResetEmail,GoogleAuthProvider,signInWithPopup,db,collection, addDoc,doc,setDoc } from "../firebase.js";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 let signUp = document.getElementById('signUp')
@@ -86,14 +86,39 @@ signUp.addEventListener('click',(()=>{
 // google pop up 
 googleBtn.addEventListener('click',(()=>{
   signInWithPopup(auth, provider)
-.then((result) => {
+.then(async(result) => {
   const credential = GoogleAuthProvider.credentialFromResult(result);
   const token = credential.accessToken;
   const user = result.user;
   console.log(credential)
+  const userId = result.user;
+  console.log(userId)
+    let getId= userId.uid
+    console.log(getId)
+    await setDoc(doc(db, "userData", await getId), {
+      FullName: user.displayName,
+      Email: user.email,
+    });
+    console.log("Document written with ID",getEmail.innerHTML);
+      const Toast = await Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+          }
+      });
+      Toast.fire({
+          icon: "success",
+          title: "Signed in successfully"
+      });
+
   setTimeout(()=>{
       location.href= "../Dashboard/dashboard.html"
-  })
+  },1000)
 }).catch((error) => {
   const errorCode = error.code;
   console.log(errorCode)
