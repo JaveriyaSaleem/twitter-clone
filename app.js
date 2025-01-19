@@ -18,6 +18,12 @@ if(!email||!password||!fullName){
     Swal.fire("Please fill out all the fields")
     return
 }    
+document.getElementById('guest').addEventListener('click',(()=>{
+    console.log("running the request")
+    setTimeout(()=>{
+        location.href = "./Dashboard/dashboard.html"
+        },2000)
+}))
 createUserWithEmailAndPassword(auth, email, password)
         .then(async(userCredential) => {
             // Signed up 

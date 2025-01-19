@@ -23,6 +23,7 @@
      <div class="content w-100 gap-[20px] sm:gap-[40px]"> 
      
       <h2 class="chirp">Sign up to <i class="fa-brands fa-x-twitter"></i></h2> 
+      
  
       <div class="form w-100 gap-[10px] sm:gap-[25px]"> 
  
@@ -42,13 +43,19 @@
         <input type="password" id="password"> <i>Password</i> 
  
        </div> 
-       <div class="flex flex-col">
+       <div class="flex flex-col gap-2">
        <div class="inputBox"> 
  
         <input type="button" value="Sign Up" id="register" class="inputBtn"> 
  
         
        </div> 
+
+       <div class="inputBox"> 
+ 
+        <input type="button" value="Sign in with Google" id="google" class="btnGoogle"> 
+ 
+       </div>
        <div class="flex justify-center w-100 items-center gap-1">
         <span class="bg-[#333639] w-[45%] h-[0.8px] inline-block"></span>
         <span class="text-[17px] text-[#E7E9EA]">or</span>
@@ -57,11 +64,12 @@
        </div>
        <div class="inputBox"> 
  
-        <input type="button" value="Sign in with Google" id="google" class="btnGoogle"> 
- 
+        <input type="button" value="Continue as a Guest" id="guest" class="inputBtn"> 
        </div> 
        <div class="pt-2 ps-2">
         <p class="text-[15px] flex flex-row items-center gap-1"><span class="text-[#71767B]">Already have an account? </span><a class="cursor-pointer text-[#146DA8] hover:underline" id="login">Sign in</a></p>
+        
+  
        </div>
  </div>
       </div> 
