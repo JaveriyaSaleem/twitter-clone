@@ -9,6 +9,14 @@ let getEmail = document.getElementById('email')
 let getPassword = document.getElementById('password')
 let getName = document.getElementById('fullName')
 let googleBtn = document.getElementById('google')
+let guestBtn = document.getElementById('guestBtn')
+// guest Btn 
+guestBtn && guestBtn.addEventListener('click',()=>{
+    console.log("running the request")
+    setTimeout(()=>{
+        location.href = "./Dashboard/dashboard.html"
+        },2000)
+})
 // click on register btn 
 registerBtn && registerBtn.addEventListener('click',() => {
 const email = getEmail.value.trim();
@@ -18,12 +26,6 @@ if(!email||!password||!fullName){
     Swal.fire("Please fill out all the fields")
     return
 }    
-document.getElementById('guest').addEventListener('click',(()=>{
-    console.log("running the request")
-    setTimeout(()=>{
-        location.href = "./Dashboard/dashboard.html"
-        },2000)
-}))
 createUserWithEmailAndPassword(auth, email, password)
         .then(async(userCredential) => {
             // Signed up 

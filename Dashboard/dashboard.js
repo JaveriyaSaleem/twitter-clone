@@ -64,7 +64,7 @@ onAuthStateChanged(auth, async(user) => {
 // console.log("signed out!")
 setTimeout(()=>{
 location.href = "../Signin/signin.html"
-},2000)
+},10000)
   }
 });
 
